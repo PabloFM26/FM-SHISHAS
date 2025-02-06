@@ -2,11 +2,11 @@
 @attribute [Authorize]
 @inject OrdersClient OrdersClient
 
-<PageTitle>Blazing Pizza - My Orders</PageTitle>
+<PageTitle>FM-SHISHAS</PageTitle>
 
 <div class="main">
     <TemplatedList Loader="@LoadOrders" ListGroupClass="orders-list">
-        <Loading>Loading...</Loading>
+        <Loading>Cargando...</Loading>
         <Empty>
             <h2>No hay pedidos</h2>
             <a class="btn btn-success" href="">Realizar pedido</a>
@@ -14,17 +14,30 @@
         <Item Context="item">
             <div class="col">
                 <h5>@item.Order.CreatedTime.ToLongDateString()</h5>
-                Items:
-                <strong>@item.Order.Pizzas.Count()</strong>;
-                Total price:
-                <strong>£@item.Order.GetFormattedTotalPrice()</strong>
+                <p>Artículos: <strong>@item.Order.Pizzas.Count()</strong></p>
+                
+                <ul>
+                    @foreach (var pizza in item.Order.Pizzas)
+                    {
+                        <li>
+                            <strong>@pizza.Special?.Name</strong> (@pizza.GetFormattedTotalPrice()€)
+                        </li>
+                    }
+                </ul>
+
+                <p>Precio total: <strong>€@item.Order.GetFormattedTotalPrice()</strong></p>
+                
+                <!-- Mostrar el método de envío de la orden, no de la pizza -->
+                <p>
+                    <strong>Método de envío:</strong> @item.Order.ShippingMethod
+                </p>
             </div>
             <div class="col">
-                Status: <strong>@item.StatusText</strong>
+                Estado: <strong>@item.StatusText</strong>
             </div>
             <div class="col flex-grow-0">
                 <a href="myorders/@item.Order.OrderId" class="btn btn-success">
-                    Track &gt;
+                    Seguimiento
                 </a>
             </div>
         </Item>

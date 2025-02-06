@@ -14,12 +14,13 @@ public class OrderState
         {
             Special = special,
             SpecialId = special.Id,
-            Size = Pizza.DefaultSize,
             Toppings = new List<PizzaTopping>(),
+            ShippingMethod = "Estandar", // Se añade el envío
         };
 
         ShowingConfigureDialog = true;
     }
+
 
     public void CancelConfigurePizzaDialog()
     {
@@ -31,12 +32,16 @@ public class OrderState
     {
         if (ConfiguringPizza is not null)
         {
+            // Establecer el método de envío a nivel de la orden
+            Order.ShippingMethod = ConfiguringPizza.ShippingMethod;
             Order.Pizzas.Add(ConfiguringPizza);
             ConfiguringPizza = null;
         }
 
         ShowingConfigureDialog = false;
     }
+
+
 
     public void RemoveConfiguredPizza(Pizza pizza)
     {

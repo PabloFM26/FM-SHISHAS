@@ -11,6 +11,9 @@ public class Order
 
     public DateTime CreatedTime { get; set; }
 
+    public string ShippingMethod { get; set; } = "Estandar";
+
+
     public Address DeliveryAddress { get; set; } = new Address();
 
     // Set by server during POST

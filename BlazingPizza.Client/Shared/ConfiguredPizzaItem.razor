@@ -1,6 +1,9 @@
 ﻿<div class="cart-item">
     <a @onclick="OnRemoved" class="delete-item">x</a>
-    <div class="title">@(Pizza.Size)" @Pizza.Special?.Name</div>
+    <div class="title">@Pizza.Special?.Name</div>
+    <!-- Mostrar la imagen de la pizza en el carrito -->
+    <img src="@Pizza.Special?.ImageUrl" alt="Pizza Image" style="width: 100px; height: auto;" />
+
     <ul>
         @foreach (var topping in Pizza.Toppings)
         {
@@ -10,7 +13,12 @@
     <div class="item-price">
         @Pizza.GetFormattedTotalPrice()
     </div>
+    <p>
+        Metodo de envío: @Pizza.ShippingMethod
+    </p>
 </div>
+
+
 
 @code {
     [Parameter, EditorRequired] public Pizza Pizza { get; set; } = new();

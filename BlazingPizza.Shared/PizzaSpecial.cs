@@ -15,5 +15,6 @@ public class PizzaSpecial
 
     public string ImageUrl { get; set; } = "img/pizzas/cheese.jpg";
 
+    public string ShippingMethod { get; set; } = "standard"; // Nuevo: método de envío
     public string GetFormattedBasePrice() => BasePrice.ToString("0.00");
 }

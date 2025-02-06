@@ -9,12 +9,12 @@
             <img src="img/user.svg" />
             <div>
                 <a href="authentication/profile" class="username">@context.User.Identity?.Name</a>
-                <button class="btn btn-link sign-out" @onclick="BeginSignOut">Sign out</button>
+                <button class="btn btn-link sign-out" @onclick="BeginSignOut">Cerrar sesión</button>
             </div>
         </Authorized>
         <NotAuthorized>
-            <a class="sign-in" href="authentication/register">Register</a>
-            <a class="sign-in" href="authentication/login">Log in</a>
+            <a class="sign-in" href="authentication/register">Registrarse</a>
+            <a class="sign-in" href="authentication/login">Iniciar sesión</a>
         </NotAuthorized>
     </AuthorizeView>
 </div>

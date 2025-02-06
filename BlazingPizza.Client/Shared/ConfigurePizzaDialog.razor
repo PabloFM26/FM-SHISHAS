@@ -2,19 +2,21 @@
 
 
         <div class="dialog-title">
-            <h2>@Pizza.Special?.Name</h2>
+        <h2>@Pizza.Special?.Name</h2>
             @Pizza.Special?.Description
-        </div>
+       </div>
         <form class="dialog-body">
+    <img src="@Pizza.Special?.ImageUrl" alt="Pizza Image" style="width: 200px; height: auto;" align="left" />
             <div>
-                <label>Size:</label>
-                <input type="range" min="@Pizza.MinimumSize" max="@Pizza.MaximumSize" step="1" @bind="Pizza.Size" @bind:event="oninput" />
-                <span class="size-label">
-                    @(Pizza.Size)" (£@(Pizza.GetFormattedTotalPrice()))
-                </span>
+                <label>Método de envío:</label>
+                <select class="custom-select" @bind="Pizza.ShippingMethod">
+                    <option value="Estandar">Envío estándar (3-5 días) - 5.00 €</option>
+                    <option value="Express">Envío express (1-2 días) - 10.00 €</option>
+                    <option value="Tienda">Recogida en tienda - Gratis</option>
+                </select>
             </div>
             <div>
-                <label>Extra Toppings:</label>
+                <label>Articulos de interes:</label>
                 @if (toppings is null)
                 {
                     <select class="custom-select" disabled>
@@ -53,11 +55,11 @@
         </form>
 
         <div class="dialog-buttons">
-            <button class="btn btn-secondary mr-auto" @onclick="OnCancel">Cancel</button>
+            <button class="btn btn-secondary mr-auto" @onclick="OnCancel">Cancelar</button>
             <span class="mr-center">
-                Price: <span class="price">@(Pizza.GetFormattedTotalPrice())</span>
+                Precio: <span class="price">@(Pizza.GetFormattedTotalPrice())</span>
             </span>
-            <button class="btn btn-success ml-auto" @onclick="OnConfirm">Order ></button>
+            <button class="btn btn-success ml-auto" @onclick="OnConfirm">Hacer pedido</button>
         </div>
 
 

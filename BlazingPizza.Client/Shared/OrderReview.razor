@@ -2,9 +2,8 @@
 {
     <p>
         <strong>
-            @(pizza.Size)"
             @pizza.Special?.Name
-            (£@pizza.GetFormattedTotalPrice())
+            (@pizza.GetFormattedTotalPrice()€)
         </strong>
     </p>
 
@@ -14,12 +13,17 @@
             <li>+ @topping.Topping?.Name</li>
         }
     </ul>
+
+    <!-- Mostrar el método de envío de la orden -->
+    <p>
+        Metodo de envío: @Order.ShippingMethod
+    </p>
 }
 
 <p>
     <strong>
-        Total price:
-        £@Order.GetFormattedTotalPrice()
+        Precio Total:
+        €@Order.GetFormattedTotalPrice()
     </strong>
 </p>
 

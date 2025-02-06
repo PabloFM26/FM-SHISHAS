@@ -15,7 +15,7 @@ public class OrderWithStatus
     // Set from Order
     public string StatusText { get; set; } = null!;
 
-    public bool IsDelivered => StatusText == "Delivered";
+    public bool IsDelivered => StatusText == "ENtregado";
 
     public List<Marker> MapMarkers { get; set; } = null!;
 
@@ -30,31 +30,31 @@ public class OrderWithStatus
 
         if (DateTime.Now < dispatchTime)
         {
-            statusText = "Preparing";
+            statusText = "Preparando";
             mapMarkers = new List<Marker>
                                 {
-                                        ToMapMarker("You", order.DeliveryLocation, showPopup: true)
+                                        ToMapMarker("Tu", order.DeliveryLocation, showPopup: true)
                                 };
         }
         else if (DateTime.Now < dispatchTime + DeliveryDuration)
         {
-            statusText = "Out for delivery";
+            statusText = "Listo para entregar";
 
             var startPosition = ComputeStartPosition(order);
             var proportionOfDeliveryCompleted = Math.Min(1, (DateTime.Now - dispatchTime).TotalMilliseconds / DeliveryDuration.TotalMilliseconds);
             var driverPosition = LatLong.Interpolate(startPosition, order.DeliveryLocation, proportionOfDeliveryCompleted);
             mapMarkers = new List<Marker>
                                 {
-                                        ToMapMarker("You", order.DeliveryLocation),
-                                        ToMapMarker("Driver", driverPosition, showPopup: true),
+                                        ToMapMarker("Tu", order.DeliveryLocation),
+                                        ToMapMarker("Conductor", driverPosition, showPopup: true),
                                 };
         }
         else
         {
-            statusText = "Delivered";
+            statusText = "Entregado";
             mapMarkers = new List<Marker>
                                 {
-                                        ToMapMarker("Delivery location", order.DeliveryLocation, showPopup: true),
+                                        ToMapMarker("Localizacion de entrega", order.DeliveryLocation, showPopup: true),
                                 };
         }
 

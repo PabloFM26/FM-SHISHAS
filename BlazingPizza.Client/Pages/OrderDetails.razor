@@ -4,27 +4,27 @@
 @inject OrdersClient OrdersClient
 @implements IDisposable
 
-<PageTitle>FM SHISHAS - Order Details</PageTitle>
+<PageTitle>FM-SHISHAS</PageTitle>
 
 <div class="main">
     @if (invalidOrder)
     {
-        <h2>Nope</h2>
-        <p>Sorry, this order could not be loaded.</p>
+        <h2>Denegado</h2>
+        <p>Lo sentimos, tu pedido no se ha podido realizar.</p>
     }
     else if (orderWithStatus is null)
     {
-        <text>Loading...</text>
+        <text>Cargando...</text>
     }
     else
     {
         <div class="track-order">
             <div class="track-order-title">
                 <h2>
-                    Order placed @orderWithStatus.Order.CreatedTime.ToLongDateString()
+                    Tu pedido llegará el: @orderWithStatus.Order.CreatedTime.ToLongDateString()
                 </h2>
                 <p class="ml-auto mb-0">
-                    Status: <strong>@orderWithStatus.StatusText</strong>
+                    Estado: <strong>@orderWithStatus.StatusText</strong>
                 </p>
             </div>
             <div class="track-order-body">
