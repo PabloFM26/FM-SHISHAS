@@ -10,9 +10,14 @@
                 throw new Error('No element with ID ' + elementId);
             }
 
+            // Verificación para asegurarse que el mapa esté siendo inicializado correctamente
+            console.log("Inicializando mapa para el elemento con ID:", elementId);
+
             // Initialize map if needed
             if (!elem.map) {
-                elem.map = L.map(elementId);
+                // Inicialización del mapa en Madrid
+                console.log("Inicializando mapa centrado en Madrid...");
+                elem.map = L.map(elementId).setView([40.4168, -3.7038], 13); // Coordenadas de Madrid con zoom 13
                 elem.map.addedMarkers = [];
                 L.tileLayer(tileUrl, { attribution: tileAttribution }).addTo(elem.map);
             }
