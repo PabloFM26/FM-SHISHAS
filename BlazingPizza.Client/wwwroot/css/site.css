@@ -54,7 +54,7 @@ form {
 .main {
     flex-grow: 1;
     overflow-y: auto;
-    background: linear-gradient(rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 80%, rgba(93,192,221,0.5) 100%);
+    background: linear-gradient(rgba(0,0,0,0) 40%, rgba(0,0,0,0.4) 80%);
     padding: 1.5rem !important;
 }
 
@@ -389,7 +389,7 @@ form {
 .dialog-title {
     background-color: #444;
     color: #fff2cc;
-    padding: 1.3rem 2rem;
+    padding: 0.5rem;
 }
 
     .dialog-title h2 {
@@ -403,7 +403,7 @@ form {
 
 .dialog-body {
     flex-grow: 1;
-    padding: 0.5rem 3rem 1rem 0;
+    padding: 0.5rem;
 }
 
 .dialog-buttons {
@@ -429,7 +429,7 @@ form {
 
     .dialog-body input, .dialog-body select {
         flex-grow: 1;
-        width: 0px;
+        width:unset;
     }
 
     .dialog-body .size-label {
@@ -445,7 +445,7 @@ form {
 
 .dialog .topping {
     display: inline-block;
-    background-color: #a04343;
+    background-color: rgb(93 192 221);
     color: white;
     padding: 0.2rem 1rem;
     border-radius: 2rem;
@@ -458,8 +458,8 @@ form {
     font-size: 0.8rem;
 }
 
-.dialog .topping-price::before {
-    content: '£';
+.dialog .topping-price::after {
+    content: '€';
 }
 
 .delete-topping {
