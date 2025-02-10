@@ -1,67 +1,67 @@
 ﻿@inject HttpClient HttpClient
 
-
-        <div class="dialog-title">
-        <h2>@Pizza.Special?.Name</h2>
-            @Pizza.Special?.Description
-       </div>
-        <form class="dialog-body">
+<div class="dialog-title">
+    <h2>@Pizza.Special?.Name</h2>
+    @Pizza.Special?.Description
+</div>
+<form class="dialog-body" @onsubmit:preventDefault>
     <img src="@Pizza.Special?.ImageUrl" alt="Pizza Image" style="width: 200px; height: auto;" align="left" />
-            <div>
-                <label>Método de envío:</label>
-                <select class="custom-select" @bind="Pizza.ShippingMethod">
-                    <option value="Estandar">Envío estándar (3-5 días) - 5.00 €</option>
-                    <option value="Express">Envío express (1-2 días) - 10.00 €</option>
-                    <option value="Tienda">Recogida en tienda - Gratis</option>
-                </select>
-            </div>
-            <div>
-                <label>Articulos de interes:</label>
-                @if (toppings is null)
+    <div>
+        <label>Método de envío:</label>
+        <select class="custom-select" @bind="Pizza.ShippingMethod">
+            <option value="Estandar">Envío estándar (3-5 días) - 5.00 €</option>
+            <option value="Express">Envío express (1-2 días) - 10.00 €</option>
+            <option value="Tienda">Recogida en tienda - Gratis</option>
+        </select>
+    </div>
+    <div>
+        <label>Artículos de interés:</label>
+        @if (toppings is null)
+        {
+            <select class="custom-select" disabled>
+                <option>(loading...)</option>
+            </select>
+        }
+        else if (Pizza.Toppings.Count >= 6)
+        {
+            <div>(maximum reached)</div>
+        }
+        else
+        {
+            <select class="custom-select" @onchange="ToppingSelected">
+                <option value="-1" disabled selected>(select)</option>
+                @for (var i = 0; i < toppings.Count; i++)
                 {
-                    <select class="custom-select" disabled>
-                        <option>(loading...)</option>
-                    </select>
+                    <option value="@i">@toppings[i].Name - (@(toppings[i].GetFormattedPrice())€)</option>
                 }
-                else if (Pizza.Toppings.Count >= 6)
-                {
-                    <div>(maximum reached)</div>
-                }
-                else
-                {
-                    <select class="custom-select" @onchange="ToppingSelected">
-                        <option value="-1" disabled selected>(select)</option>
-                        @for (var i = 0; i < toppings.Count; i++)
-                        {
-                            <option value="@i">@toppings[i].Name - (@(toppings[i].GetFormattedPrice())€)</option>
-                        }
-                    </select>
-                }
-            </div>
+            </select>
+        }
+    </div>
+    <div class="toppings">
+        @foreach (var topping in Pizza.Toppings)
+        {
+            if (topping?.Topping is not null)
+            {
+                <div class="topping">
+                    @topping.Topping.Name
+                    <span class="topping-price">@topping.Topping.GetFormattedPrice()</span>
+                    <button type="button" class="delete-topping" @onclick="@(() => RemoveTopping(topping.Topping))">x</button>
+                </div>
+            }
+        }
+    </div>
 
-            <div class="toppings">
-                @foreach (var topping in Pizza.Toppings)
-                {
-                    if (topping?.Topping is not null)
-                    {
-                        <div class="topping">
-                            @topping.Topping.Name
-                            <span class="topping-price">@topping.Topping.GetFormattedPrice()</span>
-                            <button type="button" class="delete-topping" @onclick="@(() => RemoveTopping(topping.Topping))">x</button>
-                        </div>
-                    }
-                }
-            </div>
-        </form>
+    <!-- Botón para eliminar todos los toppings -->
+    <button type="button" class="btn btn-danger" @onclick="RemoveAllToppings">Eliminar todos los articulos añadidos</button>
+</form>
 
-        <div class="dialog-buttons">
-            <button class="btn btn-secondary mr-auto" @onclick="OnCancel">Cancelar</button>
-            <span class="mr-center">
-                Precio: <span class="price">@(Pizza.GetFormattedTotalPrice())</span>
-            </span>
-            <button class="btn btn-success ml-auto" @onclick="OnConfirm">Hacer pedido</button>
-        </div>
-
+<div class="dialog-buttons">
+    <button class="btn btn-secondary mr-auto" @onclick="OnCancel">Cancelar</button>
+    <span class="mr-center">
+        Precio: <span class="price">@(Pizza.GetFormattedTotalPrice())</span>
+    </span>
+    <button class="btn btn-success ml-auto" @onclick="OnConfirm">Añadir al pedido</button>
+</div>
 
 @code {
     List<Topping>? toppings;
@@ -95,5 +95,12 @@
     void RemoveTopping(Topping topping)
     {
         Pizza.Toppings.RemoveAll(pt => pt.Topping == topping);
+    }
+
+    //Elimina todas los articulos añadidos en la configuracion del pedido
+    void RemoveAllToppings()
+    {
+        Pizza.Toppings.Clear();
+        StateHasChanged();
     }
 }

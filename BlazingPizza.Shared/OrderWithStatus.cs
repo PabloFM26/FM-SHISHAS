@@ -15,7 +15,7 @@ public class OrderWithStatus
     // Set from Order
     public string StatusText { get; set; } = null!;
 
-    public bool IsDelivered => StatusText == "ENtregado";
+    public bool IsDelivered => StatusText == "Entregado";
 
     public List<Marker> MapMarkers { get; set; } = null!;
 
@@ -54,7 +54,7 @@ public class OrderWithStatus
             statusText = "Entregado";
             mapMarkers = new List<Marker>
                                 {
-                                        ToMapMarker("Localizacion de entrega", order.DeliveryLocation, showPopup: true),
+                                        ToMapMarker("Localizacion", order.DeliveryLocation, showPopup: true),
                                 };
         }
 

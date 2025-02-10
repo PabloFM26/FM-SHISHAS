@@ -8,7 +8,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="$(BlazorVersion)" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer"  Version="$(BlazorVersion)" PrivateAssets="all"  />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="$(BlazorVersion)" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="$(BlazorVersion)" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="$(SystemNetHttpJsonVersion)" />
 		<PackageReference Include="System.Net.Http.Json" Version="$(SystemNetHttpJsonVersion)" />
@@ -18,6 +18,12 @@
     <ProjectReference Include="..\BlazingComponents\BlazingComponents.csproj" />
 		<ProjectReference Include="..\BlazingPizza.ComponentsLibrary\BlazingPizza.ComponentsLibrary.csproj" />
 		<ProjectReference Include="..\BlazingPizza.Shared\BlazingPizza.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="wwwroot\NewFolder1\" />
+	  <Folder Include="wwwroot\NewFolder2\" />
+	  <Folder Include="wwwroot\NewFolder\" />
 	</ItemGroup>
 
 </Project>

@@ -56,7 +56,7 @@ public class OrdersController : Controller
     public async Task<ActionResult<int>> PlaceOrder(Order order)
     {
         order.CreatedTime = DateTime.Now;
-        order.DeliveryLocation = new LatLong(51.5001, -0.1239);
+        order.DeliveryLocation = new LatLong(40.3000, -3.4370);
             order.UserId = PizzaApiExtensions.GetUserId(HttpContext);
 
         // Enforce existence of Pizza.SpecialId and Topping.ToppingId

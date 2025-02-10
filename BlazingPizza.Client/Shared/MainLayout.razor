@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
 
 <div class="top-bar">
     <a class="logo" href="">
@@ -11,7 +12,7 @@
     </NavLink>
 
     <AuthorizeView>
-        <NavLink href="Mis pedidos" class="nav-tab">
+        <NavLink href="MyOrders" class="nav-tab">
             <img src="img/bike.svg" />
             <div>Mis pedidos</div>
         </NavLink>

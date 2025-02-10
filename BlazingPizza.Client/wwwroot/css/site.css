@@ -51,6 +51,7 @@ form {
     background-color: white;
 }
 
+
 .main {
     flex-grow: 1;
     overflow-y: auto;
@@ -473,6 +474,19 @@ form {
 .delete-topping:hover {
     color: yellow;
 }
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin:auto;
+    cursor: pointer;
+}
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
 
 .form-message {
     padding: 0.5rem;
